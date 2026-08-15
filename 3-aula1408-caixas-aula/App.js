@@ -49,11 +49,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     flexDirection: "row",
+    borderRadius: 30,
   },
 
   caixaMenor: {
     width: 50,
     height: 50,
     backgroundColor: "#3f19ff",
+    borderRadius: 50,
   },
 });
