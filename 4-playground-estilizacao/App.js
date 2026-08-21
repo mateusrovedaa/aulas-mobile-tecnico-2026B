@@ -38,6 +38,8 @@ const COR_JUSTIFY = "#FFB84D";
 const COR_ALIGN = "#4DE1C1";
 const COR_GAP = "#FF7B92";
 
+const debug = { borderWidth: 2, borderColor: "red" };
+
 export default function App() {
   const [flexDirection, setFlexDirection] = useState("column");
   const [justifyContent, setJustifyContent] = useState("flex-start");
@@ -58,24 +60,29 @@ export default function App() {
 
   return (
     <View style={styles.tela}>
-      <Text style={styles.titulo}>Playground de Estilização</Text>
+      <Text style={[styles.titulo, debug]}>Playground de Estilização</Text>
 
       {/* A bússola: qual propriedade age em qual direção, AGORA. */}
       <View style={styles.bussola}>
         <Text style={styles.bussolaLinha}>
-          <Text style={{ color: COR_JUSTIFY }}>J = justifyContent {setaPrincipal}</Text>
-          <Text style={styles.bussolaTexto}>  empurra na {nomePrincipal}</Text>
+          <Text style={{ color: COR_JUSTIFY }}>
+            J = justifyContent {setaPrincipal}
+          </Text>
+          <Text style={styles.bussolaTexto}> empurra na {nomePrincipal}</Text>
         </Text>
         <Text style={styles.bussolaLinha}>
           <Text style={{ color: COR_ALIGN }}>A = alignItems {setaCruzado}</Text>
-          <Text style={styles.bussolaTexto}>  empurra na {nomeCruzado}</Text>
+          <Text style={styles.bussolaTexto}> empurra na {nomeCruzado}</Text>
         </Text>
       </View>
 
       {/* O PALCO com os dois trilhos desenhados nas margens, do mesmo jeito
           que você desenha no papel. O laranja segue o flexDirection; o verde cruza. */}
       <View style={styles.palcoComTrilhos}>
-        <TrilhoVertical cor={ehLinha ? COR_ALIGN : COR_JUSTIFY} letra={ehLinha ? "A" : "J"} />
+        <TrilhoVertical
+          cor={ehLinha ? COR_ALIGN : COR_JUSTIFY}
+          letra={ehLinha ? "A" : "J"}
+        />
 
         <View style={styles.colunaPalco}>
           <View
@@ -166,8 +173,16 @@ export default function App() {
         <View style={styles.painelCodigo}>
           <Linha texto="const styles = StyleSheet.create({" />
           <Linha texto="  palco: {" />
-          <LinhaProp nome="flexDirection" valor={flexDirection} cor={COR_DIRECTION} />
-          <LinhaProp nome="justifyContent" valor={justifyContent} cor={COR_JUSTIFY} />
+          <LinhaProp
+            nome="flexDirection"
+            valor={flexDirection}
+            cor={COR_DIRECTION}
+          />
+          <LinhaProp
+            nome="justifyContent"
+            valor={justifyContent}
+            cor={COR_JUSTIFY}
+          />
           <LinhaProp nome="alignItems" valor={alignItems} cor={COR_ALIGN} />
           <LinhaProp nome="gap" valor={gap} cor={COR_GAP} texto={false} />
           <Linha texto="  }," />
@@ -191,8 +206,8 @@ export default function App() {
             2. Deixe as caixas lado a lado, grudadas no meio da tela, sem gap.
           </Text>
           <Text style={styles.desafio}>
-            3. Ligue "stretch" nas duas direções e explique em voz alta por que a
-            caixa muda de forma quando você troca column por row.
+            3. Ligue "stretch" nas duas direções e explique em voz alta por que
+            a caixa muda de forma quando você troca column por row.
           </Text>
           <Text style={styles.desafio}>
             4. Ligue "flex: 1 na caixa 2". Por que ela cresce e as outras não?
