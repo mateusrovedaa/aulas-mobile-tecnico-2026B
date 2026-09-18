@@ -18,11 +18,6 @@ export default function Perfil() {
     };
   }, []);
 
-  // O TextInput chama esta função a cada tecla, passando o texto inteiro.
-  function mudarNome(texto) {
-    setNome(texto);
-  }
-
   // Calcula a saudação antes de desenhar.
   let saudacao = "Olá, Estudante";
   if (nome !== "") {
@@ -40,11 +35,15 @@ export default function Perfil() {
 
       <Text style={styles.rotulo}>Seu nome</Text>
       {/* value mostra o estado; onChangeText escreve no estado. As duas
-          pontas ligadas = campo "controlado". */}
+          pontas ligadas = campo "controlado".
+          onChangeText chama a cada tecla passando o texto inteiro, e setNome
+          já aceita o texto — então passamos setNome direto, sem função no
+          meio. Só vale criar uma função quando há conta a fazer antes de
+          guardar (veja aumentarNota em notas.js). */}
       <TextInput
         style={styles.campo}
         value={nome}
-        onChangeText={mudarNome}
+        onChangeText={setNome}
         placeholder="Digite seu nome"
       />
 
