@@ -18,12 +18,6 @@ export default function Perfil() {
     };
   }, []);
 
-  // Calcula a saudação antes de desenhar.
-  let saudacao = "Olá, Estudante";
-  if (nome !== "") {
-    saudacao = "Olá, " + nome;
-  }
-
   return (
     // headerShown: false desliga o cabeçalho só nesta tela. Sem ele, não tem
     // mais nada segurando o topo — então aqui a SafeAreaView volta a cuidar
@@ -48,8 +42,11 @@ export default function Perfil() {
       />
 
       {/* Lê o MESMO estado. A cada tecla a tela é desenhada de novo e a
-          saudação acompanha. */}
-      <Text style={styles.saudacao}>{saudacao}</Text>
+          saudação acompanha. Ternário: enquanto o campo está vazio, mostra
+          "Estudante". */}
+      <Text style={styles.saudacao}>
+        Olá, {nome !== "" ? nome : "Estudante"}
+      </Text>
 
       <Text style={styles.aviso}>
         Este nome vive só nesta tela: volte para a home e o cabeçalho continua
